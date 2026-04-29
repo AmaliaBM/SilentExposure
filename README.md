@@ -22,7 +22,7 @@ configuración de permisos y servicios de seguridad.
 
 ## 📂 Contenido del repositorio
 
-- `writeup.md` — Resolución completa del reto, apartado por apartado
+`writeup.md` — [Resolución completa del reto, apartado por apartado](https://github.com/AmaliaBM/SilentExposure/blob/master/WRITE_UP.md)
 
 ## ⚠️ Aviso
 
