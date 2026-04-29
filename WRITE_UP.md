@@ -67,11 +67,20 @@ Se emplearon dos herramientas para este apartado: `dirb` y `Gobuster`.
 
 ### Preguntas y respuestas
 
+  ![Dirb](./img/ArchivosVisibles.png)
+
+
 - **¿Cuántos ficheros tiene el servidor con dirb?**  
   Con la herramienta `dirb` se detectaron **17** ficheros en el servidor.
 
+  ![COMANDO PARA DETECTAR FICHEROS EN SERVIDOR](./img/Dirb-Wordlist.png)
+
+
 - **¿Cuántos ficheros tiene el servidor con Gobuster?**  
   Con la herramienta `Gobuster` se detectaron **32** ficheros, ya que permite una exploración más exhaustiva gracias a sus opciones de configuración.
+
+  ![COMANDO GOBUSTER](./img/GoBuster.png)
+
 
 - **¿Cuál es el código correcto?**  
   El código HTTP que indica que un recurso existe y es accesible es el **200 (OK)**.
@@ -81,6 +90,8 @@ Se emplearon dos herramientas para este apartado: `dirb` y `Gobuster`.
 
 - **¿Cuál es la flag para que no muestre los ficheros erróneos en dirb?**  
   La flag utilizada en `dirb` para filtrar y no mostrar los resultados con código 403 es: **`-N 403`**
+
+ ![](./img/N403.png)
 
 - **¿Cuál es el tamaño en bytes del fichero de mayor tamaño?**  
   El fichero de mayor tamaño encontrado tiene un tamaño de **2160 bytes**.
@@ -128,7 +139,11 @@ Un **Data Breach** es un incidente de seguridad en el que información sensible 
 ### Contexto
 **GNU Privacy Guard (GPG)** es una herramienta de cifrado y firma digital que implementa el estándar OpenPGP. Permite cifrar archivos y mensajes para que solo el destinatario autorizado pueda leerlos, y firmar digitalmente datos para garantizar su autenticidad. Utiliza un sistema de clave pública y clave privada: la pública se comparte y la privada permanece en secreto.
 
+  ![GPG](./img/ArchivoDescomprimido.png)
+
 ### Preguntas y respuestas
+
+  ![LEER ARCHIVO CONFIG](./img/LeerConfig.png)
 
 - **¿Cuál es la contraseña del fichero?**  
   La contraseña del fichero es: **`Wht3_Rbt_0bj_1993!`**
@@ -149,6 +164,8 @@ Un **Data Breach** es un incidente de seguridad en el que información sensible 
 - **¿A quién pertenece?**  
   La clave pública pertenece a **Dennis Nedry**.
 
+  ![](./img/gpgImport.png)
+
 - **¿Cuál es su correo?**  
   El correo electrónico asociado es: **dnedry@ingen.com**
 
@@ -158,6 +175,9 @@ Un **Data Breach** es un incidente de seguridad en el que información sensible 
 
 ### Contexto
 Conocer en profundidad los usuarios del sistema es fundamental en ciberseguridad. Identificar quién tiene acceso, qué roles desempeña y qué permisos posee permite aplicar el principio de mínimo privilegio y detectar posibles vectores de ataque internos. Auditar usuarios, grupos y permisos es esencial para mantener la seguridad del sistema.
+
+  ![COMANDO CONEXIÓN SSH](./img/Distribuci%C3%B3n_Ingen_os.png)
+
 
 ### Preguntas y respuestas
 
@@ -173,11 +193,16 @@ Conocer en profundidad los usuarios del sistema es fundamental en ciberseguridad
 - **¿Cuántos usuarios existen en el sistema?**  
   Existen **28** usuarios en el sistema.
 
+    ![COMANDO LEER CANTIDAD USUARIOS](./img/LeerETCpasswd.png)
+
 - **¿Cuál es el nombre completo del usuario?**  
   El nombre completo del usuario es **Dennis Nedry**.
 
 - **¿Quién es el encargado de monitorear todos los sistemas?**  
   El encargado de monitorear todos los sistemas es **R. Arnold**.
+
+    ![](./img/R-Arnold-Host.png)
+  
 
 - **¿Cuál es el hostname?**  
   El hostname del sistema es **lab-nublar-os**.
@@ -188,6 +213,9 @@ Conocer en profundidad los usuarios del sistema es fundamental en ciberseguridad
 - **¿A qué grupos pertenece el usuario?**  
   El usuario `dnedry` pertenece a los siguientes grupos:  
   `dnedry`, `adm`, `cdrom`, `dip`, `plugdev`, `lpadmin`, `sambashare`
+
+    ![Comando ver Grupos](./img/Grupo_Usuario.png)
+
 
 ---
 
@@ -201,31 +229,56 @@ Extraer información detallada del sistema es un paso clave en cualquier auditor
 - **¿Cuántos puertos tiene abiertos la máquina?**  
   La máquina tiene **4** puertos abiertos.
 
+    ![](./img/Puertos_Abiertos.png)
+
 - **¿Qué ha abierto el protocolo UDP?**  
   El protocolo UDP ha abierto **68** puertos.
+  
+    ![](./img/PuertosyProtocolos.png)
 
-- **¿Qué porcentaje de disco está siendo usado por el sistema?**  
+
+- **¿Qué porcentaje de disco está siendo usado por el sistema?**
+
+    ![Comando Porcentaje](./img/DF-h_Porcentaje.png)
+
   El disco está siendo utilizado en un **9%**.
 
 - **¿Cuántos GigaBytes hay disponibles en el disco del sistema?**  
   Hay **18 GB** disponibles en el disco del sistema.
+
+    ![COMANDO GigaBytes](./img/GigaBytes_df-h.png)
+
 
 - **El usuario www-data, ¿qué proceso está ejecutando en el sistema?**  
   El usuario `www-data` está ejecutando el proceso:  
   `/usr/sbin/lighttpd -D -f /etc/lighttpd/lighttpd.conf`  
   Esto indica que el servidor web utilizado es **lighttpd**, ejecutándose en modo demonio.
 
+    ![COMANDO PARA AVERIGUAR USUARI WWW-DATA](./img/Usuario_Data.png)
+
+
 - **¿Cuántos binarios con el bit SUID activo existen en el sistema?**  
   Existen **16** binarios con el bit SUID activo. El bit SUID permite que un binario se ejecute con los privilegios de su propietario (normalmente `root`), lo que puede suponer un riesgo si alguno de ellos es vulnerable.
 
+    ![Comando Binarios](./img/Binarios_BitSuit.png)
+  
+
 - **¿En qué estado se encuentra el firewall?**  
   El firewall se encuentra en estado **Active (exited)**. Esto significa que el servicio está activo pero ha finalizado su ejecución, lo que implica que las reglas se cargaron al inicio pero el proceso ya no está corriendo activamente, dejando potencialmente el sistema sin protección dinámica.
+
+  Reconozco que con el tema FIREWALL perdí mucho tiempo porque el comando que yo usé, a pesar de que me daba la información que sí está bien, no me la mandaba en el mismo formato que obligaba la respuesta: incluyendo paréntesis. A si que estuve dándole muchas vueltas hasta conseguirlo.
+
+   ![FIREWALL](./img/EstadoFirewall01.png)
+
+   ![FIREWALL](./img/EstadoFirewall.png)
 
 - **¿Qué versión tiene el paquete apt?**  
   La versión del paquete `apt` es **1.2.32ubuntu0.1**.
 
 - **¿Qué prioridad tiene el paquete apt para el sistema?**  
   La prioridad del paquete `apt` para el sistema es **Important**.
+
+
 
 ---
 
