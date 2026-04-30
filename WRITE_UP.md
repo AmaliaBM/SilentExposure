@@ -190,8 +190,9 @@ Un **Data Breach** es un incidente de seguridad en el que información sensible 
 Conocer en profundidad los usuarios del sistema es fundamental en ciberseguridad. Identificar quién tiene acceso, qué roles desempeña y qué permisos posee permite aplicar el principio de mínimo privilegio y detectar posibles vectores de ataque internos. Auditar usuarios, grupos y permisos es esencial para mantener la seguridad del sistema.
 
   ![COMANDO CONEXIÓN SSH](./img/Distribuci%C3%B3n_Ingen_os.png)
+  
   **ssh:** Es el protocolo (Secure Shell) que crea un túnel cifrado para que nadie pueda espiar lo que escribes.
-  **dnedry:** Es el nombre del usuario con el que intento identificarme en la otra máquina. (¡Cuidado! Si es Dennis Nedry, ¡esperemos que no bloquee los sistemas de seguridad!).
+  **dnedry:** Es el nombre del usuario con el que intento identificarme en la otra máquina.
   **10.128.176.254:** Es la dirección IP de la "casa" (servidor o equipo) a la que me quiero conectar. 
 
 ### Preguntas y respuestas
