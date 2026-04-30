@@ -153,9 +153,9 @@ Un **Data Breach** es un incidente de seguridad en el que información sensible 
 
   ![LEER ARCHIVO CONFIG](./img/LeerConfig.png)
   Ese comando es básicamente como pedir un "vistazo previo".
-**--import:** Es la orden para añadir una llave
-**--import-options show-only:** Esta es la parte importante. Le dice a GPG: "Enséñame qué hay dentro de este archivo, pero no lo guardes todavía".
-**public_key.asc:** Es el archivo que contiene la llave pública. 
+  **--import:** Es la orden para añadir una llave
+  **--import-options show-only:** Esta es la parte importante. Le dice a GPG: "Enséñame qué hay dentro de este archivo, pero no lo guardes todavía".
+  **public_key.asc:** Es el archivo que contiene la llave pública. 
   
 
 - **¿Cuál es la contraseña del fichero?**  
@@ -190,7 +190,9 @@ Un **Data Breach** es un incidente de seguridad en el que información sensible 
 Conocer en profundidad los usuarios del sistema es fundamental en ciberseguridad. Identificar quién tiene acceso, qué roles desempeña y qué permisos posee permite aplicar el principio de mínimo privilegio y detectar posibles vectores de ataque internos. Auditar usuarios, grupos y permisos es esencial para mantener la seguridad del sistema.
 
   ![COMANDO CONEXIÓN SSH](./img/Distribuci%C3%B3n_Ingen_os.png)
-
+  **ssh:** Es el protocolo (Secure Shell) que crea un túnel cifrado para que nadie pueda espiar lo que escribes.
+  **dnedry:** Es el nombre del usuario con el que intento identificarme en la otra máquina. (¡Cuidado! Si es Dennis Nedry, ¡esperemos que no bloquee los sistemas de seguridad!).
+  **10.128.176.254:** Es la dirección IP de la "casa" (servidor o equipo) a la que me quiero conectar. 
 
 ### Preguntas y respuestas
 
@@ -207,7 +209,10 @@ Conocer en profundidad los usuarios del sistema es fundamental en ciberseguridad
   Existen **28** usuarios en el sistema.
 
     ![COMANDO LEER CANTIDAD USUARIOS](./img/LeerETCpasswd.png)
-
+    **cat /etc/passwd**
+    **cat:** Lee el contenido del archivo.
+    **/etc/passwd:** Es el archivo que guarda la configuración básica de todos los usuarios del sistema.
+    
 - **¿Cuál es el nombre completo del usuario?**  
   El nombre completo del usuario es **Dennis Nedry**.
 
@@ -251,7 +256,14 @@ Extraer información detallada del sistema es un paso clave en cualquier auditor
   El protocolo UDP ha abierto **68** puertos.
   
     ![](./img/PuertosyProtocolos.png)
+    **ss -tuln**
+    Este comando es como mirar un tablero de control de las comunicaciones de la máquina. Sirve para ver qué "puertas" (puertos) tiene abiertas el ordenador hacia     el mundo.
 
+  **ss:** Es la herramienta para investigar los "sockets" (conexiones de red). Es el sustituto moderno del antiguo comando netstat.
+  **-t:** Muestra solo conexiones TCP (como las de las webs).
+  **-u:** Muestra solo conexiones UDP (usadas en streaming o juegos).
+  **-l:** Muestra solo los puertos que están escuchando (listening). Es decir, puertos que están esperando a que alguien se conecte a ellos.
+  **-n:** Muestra todo en números. En lugar de decirte "puerto HTTP", dirá "puerto 80". Es mucho más rápido porque no pierde tiempo buscando nombres.
 
 - **¿Qué porcentaje de disco está siendo usado por el sistema?**
 
@@ -271,6 +283,12 @@ Extraer información detallada del sistema es un paso clave en cualquier auditor
   Esto indica que el servidor web utilizado es **lighttpd**, ejecutándose en modo demonio.
 
     ![COMANDO PARA AVERIGUAR USUARI WWW-DATA](./img/Usuario_Data.png)
+    **ps -fu www.data**
+    Este comando sirve para "espiar" qué está haciendo el servidor web en este preciso momento.
+
+    **ps:** Es la herramienta para ver los procesos (programas) que se están ejecutando.
+    **-f:** (Full-format) Le pide al sistema todos los detalles: quién lanzó el programa, a qué hora empezó, qué comando exacto usó, etc.
+    **-u www-data:** (User) Le dice: "Solo enséñame lo que está haciendo el usuario www-data".
 
 
 - **¿Cuántos binarios con el bit SUID activo existen en el sistema?**  
@@ -278,10 +296,10 @@ Extraer información detallada del sistema es un paso clave en cualquier auditor
 
     ![Comando Binarios](./img/Binarios_BitSuit.png)
     Ese comando es como usar un detector de metales para buscar "superpoderes" escondidos.
-**find /:** Busca en todo el ordenador, desde la raíz.
-**-perm -4000:** Busca archivos que tengan activado el bit SUID (Set User ID). Archivos que, al ejecutarse, funcionan con los privilegios del dueño.
-**-type f:** Le dice que solo busque archivos normales, ignorando carpetas.
-**2>/dev/null:** Sirve para que la pantalla no se llene de mensajes de "Permiso denegado" en las carpetas donde no tienes acceso. Solo los resultados que importan
+    **find /:** Busca en todo el ordenador, desde la raíz.
+    **-perm -4000:** Busca archivos que tengan activado el bit SUID (Set User ID). Archivos que, al ejecutarse, funcionan con los privilegios del dueño.
+    **-type f:** Le dice que solo busque archivos normales, ignorando carpetas.
+    **2>/dev/null:** Sirve para que la pantalla no se llene de mensajes de "Permiso denegado" en las carpetas donde no tienes acceso. Solo los resultados que importan
   
 
 - **¿En qué estado se encuentra el firewall?**  
@@ -290,6 +308,14 @@ Extraer información detallada del sistema es un paso clave en cualquier auditor
   Reconozco que con el tema FIREWALL perdí mucho tiempo porque el comando que yo usé, a pesar de que me daba la información que sí está bien, no me la mandaba en el mismo formato que obligaba la respuesta: incluyendo paréntesis. A si que estuve dándole muchas vueltas hasta conseguirlo.
 
    ![FIREWALL](./img/EstadoFirewall01.png)
+  **systemctl list-units --type=service --all --no-pager --plain**
+  Este comando es como pedir una lista detallada de todos los motores (servicios) que tiene el sistema, para saber cuáles están funcionando y cuáles están         apagados.
+
+  **systemctl list-units:** Es la orden principal para ver las "unidades" (tareas/servicios) que gestiona el sistema.
+  **--type=service:** Filtra la lista para que solo muestre servicios (programas que corren de fondo), ignorando otras cosas como puntos de montaje o dispositivos.
+  **--all:** Le dice que enseñe todo, incluso los servicios que han fallado o que están desactivados (por defecto, a veces solo muestra los activos).
+  **--no-pager:** Evita que el resultado se corte y tener que ir bajando con el teclado. Suelta toda la información de golpe en la pantalla.
+  **--plain:** Quita los colores y el formato bonito para que sea puro texto. Ideal para pasarle el resultado a otro comando para buscar palabras específicas.
 
    ![FIREWALL](./img/EstadoFirewall.png)
 
