@@ -73,12 +73,20 @@ Se emplearon dos herramientas para este apartado: `dirb` y `Gobuster`.
   Con la herramienta `dirb` se detectaron **17** ficheros en el servidor.
 
   ![COMANDO PARA DETECTAR FICHEROS EN SERVIDOR](./img/Dirb-Wordlist.png)
+  Ese comando es como enviar a un mensajero a llamar a todas las puertas de un edificio para ver cuáles están abiertas.
+  **dirb:** Es la herramienta que hace el trabajo sucio. Su función es buscar carpetas o páginas ocultas en una web.
+  **http://10.130.156.114:** Es la dirección de la "casa" (el servidor) que estamos inspeccionando.
+  **/root/wordlist.txt:** Es un diccionario. Contiene miles de palabras "admin", "config", "backup", etc.
 
 
 - **¿Cuántos ficheros tiene el servidor con Gobuster?**  
   Con la herramienta `Gobuster` se detectaron **32** ficheros, ya que permite una exploración más exhaustiva gracias a sus opciones de configuración.
 
   ![COMANDO GOBUSTER](./img/GoBuster.png)
+  **gobuster dir:** Es la herramienta, el modo dir (directorio) para buscar rutas ocultas en una web.
+  **-u http://10.130.156.114:** La U de URL. Es el objetivo a explorar.
+  **-w /root/wordlist.txt:** La W de Wordlist. Es el diccionario de palabras que el programa va a probar.
+  
 
 
 - **¿Cuál es el código correcto?**  
@@ -140,9 +148,15 @@ Un **Data Breach** es un incidente de seguridad en el que información sensible 
 
   ![GPG](./img/ArchivoDescomprimido.png)
 
+
 ### Preguntas y respuestas
 
   ![LEER ARCHIVO CONFIG](./img/LeerConfig.png)
+  Ese comando es básicamente como pedir un "vistazo previo".
+**--import:** Es la orden para añadir una llave
+**--import-options show-only:** Esta es la parte importante. Le dice a GPG: "Enséñame qué hay dentro de este archivo, pero no lo guardes todavía".
+**public_key.asc:** Es el archivo que contiene la llave pública. 
+  
 
 - **¿Cuál es la contraseña del fichero?**  
   La contraseña del fichero es: **`Wht3_Rbt_0bj_1993!`**
@@ -229,6 +243,9 @@ Extraer información detallada del sistema es un paso clave en cualquier auditor
   La máquina tiene **4** puertos abiertos.
 
     ![](./img/Puertos_Abiertos.png)
+    **cat /etc/os-release** Este comando sirve para preguntarle al sistema: "¿Exactamente quién eres?".
+    **cat:** Es la orden para "leer" o mostrar el contenido de un archivo por pantalla.
+    **/etc/os-release:** Es el archivo donde el sistema guarda "datos de identidad".
 
 - **¿Qué ha abierto el protocolo UDP?**  
   El protocolo UDP ha abierto **68** puertos.
@@ -260,6 +277,11 @@ Extraer información detallada del sistema es un paso clave en cualquier auditor
   Existen **16** binarios con el bit SUID activo. El bit SUID permite que un binario se ejecute con los privilegios de su propietario (normalmente `root`), lo que puede suponer un riesgo si alguno de ellos es vulnerable.
 
     ![Comando Binarios](./img/Binarios_BitSuit.png)
+    Ese comando es como usar un detector de metales para buscar "superpoderes" escondidos.
+**find /:** Busca en todo el ordenador, desde la raíz.
+**-perm -4000:** Busca archivos que tengan activado el bit SUID (Set User ID). Archivos que, al ejecutarse, funcionan con los privilegios del dueño.
+**-type f:** Le dice que solo busque archivos normales, ignorando carpetas.
+**2>/dev/null:** Sirve para que la pantalla no se llene de mensajes de "Permiso denegado" en las carpetas donde no tienes acceso. Solo los resultados que importan
   
 
 - **¿En qué estado se encuentra el firewall?**  
